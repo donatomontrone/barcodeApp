@@ -1,48 +1,40 @@
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.doazz.barcode.controller.HomePageController"
-            stylesheets="@../application.css"
-            fx:id="rootPane">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootPane" stylesheets="@../application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.doazz.barcode.controller.HomePageController">
     <top>
         <HBox style="-fx-background-color: #18947E;">
             <Button fx:id="homeButton" styleClass="navbar-button">
                 <tooltip>
-                    <Tooltip text="Home"/>
+                    <Tooltip text="Home" />
                 </tooltip>
                 <graphic>
-                    <ImageView fitWidth="40" fitHeight="36" preserveRatio="true">
+                    <ImageView fitHeight="36" fitWidth="40" preserveRatio="true">
                         <image>
-                            <Image url="@../images/home.png"/>
+                            <Image url="@../images/home.png" />
                         </image>
                     </ImageView>
                 </graphic>
             </Button>
 
-            <Button text="Articoli" fx:id="itemButton" styleClass="navbar-button"/>
+            <Button fx:id="itemButton" styleClass="navbar-button" text="Articoli" />
         </HBox>
     </top>
 
     <!-- Central Area -->
     <center>
-        <VBox alignment="CENTER">
-            <ImageView fitWidth="300" fitHeight="200" preserveRatio="true">
+        <VBox alignment="CENTER" prefHeight="525.0" prefWidth="300.0">
+            <ImageView fitHeight="200" fitWidth="300" preserveRatio="true">
                 <image>
-                    <Image url="@../images/barcode.png"/>
+                    <Image url="@../images/barcode.png" />
                 </image>
             </ImageView>
-            <Text text="Scansiona un codice a barre" style="-fx-font-size: 22 px;"/>
-            <TextField fx:id="barcodeText"
-                       promptText="Codice a barre"
-                       style="-fx-opacity: 0; -fx-max-height: 1; -fx-max-width: 1;"
-                       focusTraversable="true" />
+            <Text style="-fx-font-size: 22 px;" text="Scansiona un codice a barre" />
+            <TextField fx:id="barcodeText" focusTraversable="true" promptText="Codice a barre" style="-fx-opacity: 0; -fx-max-height: 1; -fx-max-width: 1;" />
         </VBox>
     </center>
 </BorderPane>

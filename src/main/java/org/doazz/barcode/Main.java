@@ -2,9 +2,12 @@ package org.doazz.barcode;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.doazz.barcode.constant.Path;
 import org.doazz.barcode.constant.Title;
 import org.doazz.barcode.constant.View;
@@ -19,12 +22,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(View.HOME.getPath()));
-        Scene scene = new Scene(loader.load());
+        Parent content = loader.load();
+
+        TitleBarMinimal titleBar = new TitleBarMinimal(primaryStage, Title.APP_TITLE.getValue());
+
+        VBox root = new VBox(titleBar, content);
+        Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application.css")).toExternalForm());
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         getStage(primaryStage, scene);
         Main.primaryStage = primaryStage;
     }
+
 
     public static void main(String[] args) {
         launch(args);
