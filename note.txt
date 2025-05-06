@@ -1,0 +1,1 @@
+jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar --main-class org.doazz.barcode.Main --type exe --icon src/main/resources/images/icon.ico --java-options "-Xmx512m" --module-path C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib --add-modules javafx.controls,javafx.fxml

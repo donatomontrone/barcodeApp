@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER_LEFT" prefHeight="300" prefWidth="438.0" styleClass="alert" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.doazz.barcode.controller.AddFastItemController">
+   <Label layoutX="23.0" layoutY="42.0" text="Aggiungi prodotto" textFill="#18947E">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+      <VBox.margin>
+         <Insets bottom="20.0" left="10.0" />
+      </VBox.margin>
+   </Label>
+   <Label text="Codice a barre">
+      <VBox.margin>
+         <Insets left="10.0" />
+      </VBox.margin></Label>
+   <TextField fx:id="barcodeField" editable="false" promptText="0987654321" disable="true" focusTraversable="false" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0" >
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" />
+      </VBox.margin>
+   </TextField>
+   <Label layoutX="23.0" layoutY="108.0" text="Nome">
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" top="15.0" />
+      </VBox.margin>
+   </Label>
+   <TextField fx:id="nameField" promptText="Prodotto X" layoutX="23.0" layoutY="128.0" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0">
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" />
+      </VBox.margin>
+   </TextField>
+   <Label layoutX="23.0" layoutY="140.0" text="Prezzo">
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" top="15.0" />
+      </VBox.margin>
+   </Label>
+   <TextField fx:id="priceField" promptText="102.10" focusTraversable="false" layoutX="23.0" layoutY="160.0" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0">
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" />
+      </VBox.margin>
+   </TextField>
+
+    <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="0.0" style="-fx-spacing: 5px;">
+        <Button fx:id="saveButton" onAction="#handleSave" styleClass="custom-add-button" text="Salva" />
+        <Button fx:id="cancelButton" onAction="#handleCancel" styleClass="custom-back-button" text="Annulla" />
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" />
+      </VBox.margin>
+    </HBox>
+</VBox>

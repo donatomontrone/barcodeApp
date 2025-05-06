@@ -1,0 +1,129 @@
+.navbar-button {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-radius: 0px;
+    -fx-font-size: 16px;
+    -fx-max-height: Infinity;
+}
+
+.navbar-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-cursor: hand;
+}
+
+.alert {
+    -fx-background-color: #f8f8f8;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-border-color: #18947E;
+    -fx-border-width: 2px;
+}
+
+.alert .button-bar {
+    -fx-alignment: bottom-right;
+    -fx-spacing: 5px;
+    -fx-padding: 10px 5px;
+}
+
+.custom-add-button {
+    -fx-background-color: #18947E;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.custom-add-button:hover {
+    -fx-background-color: #1bb194;
+}
+
+.custom-add-button:pressed {
+    -fx-background-color: #157f6b;
+    -fx-translate-y: 1;
+}
+
+.custom-back-button {
+    -fx-background-color: lightgray;
+    -fx-text-fill: black;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 2, 0.0, 0, 1);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.custom-back-button:hover {
+    -fx-background-color: #d6d6d6;
+}
+
+.custom-back-button:pressed {
+    -fx-background-color: #bdbdbd;
+    -fx-translate-y: 1;
+}
+
+.custom-edit-button {
+    -fx-background-color: #18947E;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 2, 0.0, 0, 1);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.custom-edit-button:hover {
+    -fx-background-color: #1bb194;
+}
+
+.custom-edit-button:pressed {
+    -fx-background-color: #157f6b;
+    -fx-translate-y: 1;
+}
+
+.table-row-cell:selected .custom-edit-button {
+    -fx-background-color: white;
+    -fx-text-fill: #18947E;
+}
+
+.custom-ok-button {
+    -fx-background-color: #18947E;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 2, 0.0, 0, 1);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.custom-ok-button:hover {
+    -fx-background-color: #1bb194;
+}
+
+.custom-ok-button:pressed {
+    -fx-background-color: #157f6b;
+    -fx-translate-y: 1;
+}
+
+
+.custom-delete-button {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 2, 0.0, 0, 1);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.custom-delete-button:hover {
+    -fx-background-color: #c82333;
+}
+
+.custom-delete-button:pressed {
+    -fx-background-color: #bd2130;
+    -fx-translate-y: 1;
+}
