@@ -117,7 +117,7 @@ public class ItemListController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    HBox box = new HBox(5, editButton, deleteButton); // spacing between buttons
+                    HBox box = new HBox(5, editButton, deleteButton);
                     setGraphic(box);
                 }
             }

@@ -1,6 +1,7 @@
 .base-button {
     -fx-text-fill: white;
     -fx-font-weight: normal;
+    -fx-font-size: 14px;
     -fx-background-radius: 6;
     -fx-padding: 6 12;
     -fx-cursor: hand;
