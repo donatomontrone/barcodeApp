@@ -22,13 +22,6 @@ out/
 target/
 dependency-reduced-pom.xml
 .DS_Store
+note.txt
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-
-git init
-git add .
-git commit -m "project"
-git branch -M master
-git remote add origin https://github.com/donatomontrone/barcodeApp.git
-git push -u origin master

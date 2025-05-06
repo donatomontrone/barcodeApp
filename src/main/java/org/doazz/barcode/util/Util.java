@@ -18,8 +18,6 @@ public class Util {
     }
 
     public static Alert showAlert(Alert.AlertType type, String title, String message, boolean isModal, ButtonType... buttons) {
-
-
         Alert alert;
         if (buttons != null) {
             alert = new Alert(type, title, buttons);
@@ -42,7 +40,7 @@ public class Util {
             Button button = (Button) dialogPane.lookupButton(b);
             if (button != null) {
                 if (b.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                    button.getStyleClass().add("custom-ok-button");
+                    button.getStyleClass().addAll("base-button", "custom-ok-button");
                 }
             }
         }
@@ -58,9 +56,9 @@ public class Util {
                     Button button = (Button) dialogPane.lookupButton(bt);
                     if (button != null) {
                         if (bt.getButtonData() == ButtonBar.ButtonData.YES) {
-                            button.getStyleClass().add("custom-edit-button");
+                            button.getStyleClass().addAll("base-button", "custom-edit-button");
                         } else if (bt.getButtonData() == ButtonBar.ButtonData.NO) {
-                            button.getStyleClass().add("custom-back-button");
+                            button.getStyleClass().addAll("base-button", "custom-back-button");
                         }
                     }
                 }
@@ -106,6 +104,7 @@ public class Util {
             }
         });
     }
+
     public static void firstOnFocus(TextField field) {
         Platform.runLater(field::requestFocus);
     }

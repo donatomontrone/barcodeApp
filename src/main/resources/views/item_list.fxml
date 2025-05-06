@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import java.lang.String?>
 <VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.doazz.barcode.controller.ItemListController">
 
     <VBox stylesheets="@../table.css">
@@ -19,13 +20,17 @@
             </columns>
         </TableView>
 
-        <Button alignment="CENTER_RIGHT" onAction="#onAddItem" styleClass="custom-add-button" text="Nuovo Articolo">
+        <Button alignment="CENTER_RIGHT" onAction="#onAddItem" text="Nuovo Articolo">
             <VBox.margin>
                 <Insets bottom="10.0" left="660.0" top="10.0" />
             </VBox.margin>
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
+            <styleClass>
+                <String fx:value="base-button" />
+                <String fx:value="custom-add-button" />
+            </styleClass>
         </Button>
     </VBox>
 </VBox>

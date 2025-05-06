@@ -93,8 +93,8 @@ public class HomePageController implements Initializable {
 
             Button addButton = (Button) alert.getDialogPane().lookupButton(addType);
             Button backButton = (Button) alert.getDialogPane().lookupButton(backType);
-            addButton.getStyleClass().add("custom-add-button");
-            backButton.getStyleClass().add("custom-back-button");
+            addButton.getStyleClass().addAll("base-button", "custom-add-button");
+            backButton.getStyleClass().addAll("base-button", "custom-back-button");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get().getText().equals(Btn.ADD.getName())) {

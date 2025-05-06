@@ -79,15 +79,14 @@ public class ItemListController implements Initializable {
             private final Button deleteButton = new Button();
 
             {
-                // Edit button styling and action
-                editButton.getStyleClass().add("custom-edit-button");
+                editButton.getStyleClass().addAll("base-button", "custom-edit-button");
                 editButton.setOnAction(e -> {
                     Item item = getTableView().getItems().get(getIndex());
                     openEditModal(item);
                 });
 
                 // Delete button styling and icon
-                deleteButton.getStyleClass().add("custom-delete-button");
+                deleteButton.getStyleClass().addAll("base-button", "custom-delete-button");
                 Image trashIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/trash.png")));
                 ImageView imageView = new ImageView(trashIcon);
                 imageView.setFitHeight(16);
