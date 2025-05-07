@@ -22,7 +22,6 @@ out/
 target/
 dependency-reduced-pom.xml
 .DS_Store
-note.txt
 dump.sql
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

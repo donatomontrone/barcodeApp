@@ -1,1 +1,30 @@
-jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar --main-class org.doazz.barcode.Main --type exe --icon src/main/resources/images/icon.ico --java-options "-Xmx512m" --module-path C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib --add-modules javafx.controls,javafx.fxml
+jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar
+--main-class org.doazz.barcode.Main --type exe --icon src/main/resources/images/icon.ico
+--java-options "-Xmx512m" --module-path C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib
+--add-modules javafx.controls,javafx.fxml
+
+jlink --module-path "C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib;C:/Program Files/Java/jdk-17/lib" \
+      --add-modules javafx.controls,javafx.fxml \
+      --output custom-runtime \
+      --compress=2 --no-header-files --no-man-pages
+
+jpackage \
+  --name BarcodeApp
+  --input target
+  --main-jar BarcodeApp.jar
+  --main-class org.doazz.barcode.Main
+  --type exe
+  --icon src/main/resources/images/icon.ico
+  --java-options "-Xmx512m"
+  --runtime-image "C:/Users/DonatoMontrone/Downloads/custom-runtime"
+  --win-menu
+  --win-dir-chooser
+  --win-menu-group "BarcodeApp"
+  --win-shortcut
+  --win-upgrade-uuid "12345678-1234-5678-1234-567812345678"
+  --description "BarcodeApp - Gestione rapida dei tuoi articoli"
+  --win-installer-name "BarcodeAppInstaller.exe"
+  --win-uninstall-name "BarcodeApp Uninstaller"
+  --win-uninstall-icon "src/main/resources/images/uninstall-icon.ico"
+  --install-dir "C:\Program Files\BarcodeApp"
+  --resource-dir src/main/resources/
