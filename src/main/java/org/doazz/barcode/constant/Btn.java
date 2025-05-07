@@ -2,7 +2,11 @@ package org.doazz.barcode.constant;
 
 public enum Btn {
     ADD("Aggiungi"),
-    BACK("Annulla");
+    BACK("Annulla"),
+    YES("Sì"),
+    NO("No"),
+    MINIMIZE("–"),
+    CLOSE("✕");
 
     private final String name;
 

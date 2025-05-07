@@ -1,0 +1,27 @@
+.title-bar-minimal {
+    -fx-background-color: #18947E;
+    -fx-padding: 6 12;
+    -fx-spacing: 8;
+}
+
+.label-minimal {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.button-minimal {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 3px;
+}
+
+.button-minimal:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.button-minimal:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.35);
+}

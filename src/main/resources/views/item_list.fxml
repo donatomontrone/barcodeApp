@@ -28,6 +28,9 @@
                 <String fx:value="base-button" />
                 <String fx:value="custom-add-button" />
             </styleClass>
+            <tooltip>
+                <Tooltip text="Aggiungi un nuovo articolo" />
+            </tooltip>
         </Button>
     </VBox>
 </VBox>

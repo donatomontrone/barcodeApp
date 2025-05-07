@@ -8,24 +8,20 @@
 <BorderPane fx:id="rootPane" stylesheets="@../application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.doazz.barcode.controller.HomePageController">
     <top>
         <HBox style="-fx-background-color: #18947E;">
-            <Button fx:id="homeButton" styleClass="navbar-button">
+            <Button fx:id="homeButton" styleClass="navbar-button" text="Scan">
                 <tooltip>
-                    <Tooltip text="Home" />
+                    <Tooltip text="Scannerizza un codice a barre"  />
                 </tooltip>
-                <graphic>
-                    <ImageView fitHeight="36" fitWidth="40" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/home.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
             </Button>
 
-            <Button fx:id="itemButton" styleClass="navbar-button" text="Articoli" />
+            <Button fx:id="itemButton" styleClass="navbar-button" text="Articoli" >
+                <tooltip>
+                    <Tooltip text="Visualizza tutti gli articoli" />
+                </tooltip>
+            </Button>
         </HBox>
     </top>
 
-    <!-- Central Area -->
     <center>
         <VBox alignment="CENTER" prefHeight="525.0" prefWidth="300.0">
             <ImageView fitHeight="200" fitWidth="300" preserveRatio="true">

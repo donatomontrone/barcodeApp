@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import org.doazz.barcode.constant.Message;
 import org.doazz.barcode.constant.Title;
 import org.doazz.barcode.dao.ItemDAO;
@@ -53,10 +54,11 @@ public class EditItemController implements Initializable {
     private void handleSave() {
         String name = nameField.getText().trim();
         String priceStr = priceField.getText().trim();
+        Window owner = saveButton.getScene().getWindow();
 
         if (name.isEmpty() || priceStr.isEmpty()) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    Message.REQUIRED.getValue(), true);
+                    Message.REQUIRED.getValue(), true, owner);
             alert.showAndWait();
             return;
         }
@@ -65,7 +67,7 @@ public class EditItemController implements Initializable {
         if (itemWIthName != null && !itemWIthName.getEAN().equals(itemToEdit.getEAN())) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
                     String.format(Message.ALREADY_NAME_REGISTERED.getValue(), itemWIthName.getName()),
-                    true);
+                    true, owner);
             alert.showAndWait();
             return;
         }
@@ -75,7 +77,7 @@ public class EditItemController implements Initializable {
             price = Double.parseDouble(priceStr);
         } catch (NumberFormatException e) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    Message.INVALID_PRICE.getValue(), true);
+                    Message.INVALID_PRICE.getValue(), true, owner);
             alert.showAndWait();
             return;
         }
@@ -88,7 +90,7 @@ public class EditItemController implements Initializable {
             closeWindow(saveButton);
         } catch (Exception e) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    String.format(Message.SAVE_ERROR.getValue(), e.getMessage()), true);
+                    String.format(Message.SAVE_ERROR.getValue(), e.getMessage()), true, owner);
             alert.showAndWait();
         }
     }

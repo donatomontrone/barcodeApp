@@ -24,19 +24,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(View.HOME.getPath()));
         Parent content = loader.load();
-
         TitleBarMinimal titleBar = new TitleBarMinimal(primaryStage, Title.APP_TITLE.getValue());
-
         VBox root = new VBox(titleBar, content);
         Scene scene = new Scene(root);
-
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Path.MAIN_CSS.getPath())).toExternalForm());
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         getStage(primaryStage, scene);
         Main.primaryStage = primaryStage;
     }
-
 
     public static void main(String[] args) {
         launch(args);

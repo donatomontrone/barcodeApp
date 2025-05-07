@@ -13,13 +13,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.doazz.barcode.Main;
-import org.doazz.barcode.constant.Message;
-import org.doazz.barcode.constant.Title;
-import org.doazz.barcode.constant.View;
+import org.doazz.barcode.constant.*;
+import org.doazz.barcode.constant.Tooltip;
 import org.doazz.barcode.dao.ItemDAO;
 import org.doazz.barcode.model.Item;
 
@@ -28,7 +26,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static org.doazz.barcode.util.Util.showAlert;
+import static org.doazz.barcode.Main.getPrimaryStage;
+import static org.doazz.barcode.util.Util.*;
 
 @SuppressWarnings("unused")
 public class ItemListController implements Initializable {
@@ -45,7 +44,6 @@ public class ItemListController implements Initializable {
     private TableColumn<Item, String> columnPrice;
     @FXML
     private TableColumn<Item, Void> columnAction;
-
 
     private final ItemDAO dao = new ItemDAO();
 
@@ -66,7 +64,7 @@ public class ItemListController implements Initializable {
         columnName.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().getName()));
         columnPrice.setCellValueFactory(data ->
-                new SimpleStringProperty(String.format("€ %.2f", data.getValue().getPrice())));
+                new SimpleStringProperty(String.format(EURO_FORMAT, data.getValue().getPrice())));
         loadItemList();
         addActionButtons();
     }
@@ -74,20 +72,20 @@ public class ItemListController implements Initializable {
     @FXML
     private void addActionButtons() {
         columnAction.setCellFactory(col -> new TableCell<>() {
-
             private final Button editButton = new Button(Title.EDIT.getValue());
             private final Button deleteButton = new Button();
 
             {
-                editButton.getStyleClass().addAll("base-button", "custom-edit-button");
+                addTooltip(editButton, Tooltip.EDIT);
+                editButton.getStyleClass().addAll(StyleClass.BASE_BTN.getName(), StyleClass.EDIT_BTN.getName());
                 editButton.setOnAction(e -> {
                     Item item = getTableView().getItems().get(getIndex());
                     openEditModal(item);
                 });
 
-                // Delete button styling and icon
-                deleteButton.getStyleClass().addAll("base-button", "custom-delete-button");
-                Image trashIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/trash.png")));
+                addTooltip(deleteButton, Tooltip.DELETE);
+                deleteButton.getStyleClass().addAll(StyleClass.BASE_BTN.getName(), StyleClass.DELETE_BTN.getName());
+                Image trashIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Path.TRASH.getPath())));
                 ImageView imageView = new ImageView(trashIcon);
                 imageView.setFitHeight(16);
                 imageView.setFitWidth(16);
@@ -95,12 +93,11 @@ public class ItemListController implements Initializable {
                 deleteButton.setOnAction(e -> {
                     Item item = getTableView().getItems().get(getIndex());
 
-                    ButtonType yesButton = new ButtonType("Sì", ButtonBar.ButtonData.YES);
-                    ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
-
-                    Alert alert = showAlert(Alert.AlertType.CONFIRMATION, Title.CONFIRM_DEL.getValue(),
+                    ButtonType yesButton = new ButtonType(Btn.YES.getName(), ButtonBar.ButtonData.YES);
+                    ButtonType noButton = new ButtonType(Btn.NO.getName(), ButtonBar.ButtonData.NO);
+                    Alert alert = showAlert(Alert.AlertType.ERROR, Title.CONFIRM_DEL.getValue(),
                             String.format(Message.CONFIRM_DELETE.getValue(), item.getName()),
-                            true, yesButton, noButton);
+                            true, getPrimaryStage(), yesButton, noButton);
 
                     alert.showAndWait().ifPresent(result -> {
                         if (result == yesButton) {
@@ -124,7 +121,6 @@ public class ItemListController implements Initializable {
         });
     }
 
-
     @FXML
     public void onAddItem() {
         try {
@@ -134,7 +130,8 @@ public class ItemListController implements Initializable {
             stage.setTitle(Title.NEW.getValue());
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
+            moveModal(scene.getRoot(), stage, getPrimaryStage());
+            showModalCentered(stage, getPrimaryStage());
             stage.initStyle(StageStyle.UNDECORATED);
             Main.openSecondaryStage(stage);
             stage.showAndWait();
@@ -153,7 +150,8 @@ public class ItemListController implements Initializable {
             controller.setItemToEdit(item);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+            moveModal(scene.getRoot(), stage, getPrimaryStage());
+            showModalCentered(stage, getPrimaryStage());
             stage.setTitle(Title.EDIT_ITEM.getValue());
             stage.setScene(scene);
             stage.setResizable(false);

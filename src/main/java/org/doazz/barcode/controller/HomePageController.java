@@ -15,10 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.doazz.barcode.Main;
-import org.doazz.barcode.constant.Btn;
-import org.doazz.barcode.constant.Message;
-import org.doazz.barcode.constant.Title;
-import org.doazz.barcode.constant.View;
+import org.doazz.barcode.constant.*;
 import org.doazz.barcode.dao.ItemDAO;
 import org.doazz.barcode.model.Item;
 
@@ -27,8 +24,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static org.doazz.barcode.util.Util.isNumeric;
-import static org.doazz.barcode.util.Util.showAlert;
+import static org.doazz.barcode.Main.getPrimaryStage;
+import static org.doazz.barcode.util.Util.*;
 
 public class HomePageController implements Initializable {
 
@@ -59,10 +56,10 @@ public class HomePageController implements Initializable {
         barcodeText.setOnAction(e -> {
             String code = barcodeText.getText().trim();
             if (!code.isEmpty()) {
-                if (!isNumeric(code)) {
+                if (isNotNumeric(code)) {
                     Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
                             String.format(Message.BARCODE.getValue(), code),
-                            true);
+                            true, Main.getPrimaryStage());
                     alert.showAndWait();
                     barcodeText.clear();
                     return;
@@ -78,9 +75,9 @@ public class HomePageController implements Initializable {
         Item item = itemDAO.findByBarcode(barcode);
         if (item != null) {
             String title = String.format(Title.ITEM_NAME.getValue(), barcode);
-            String message = String.format(Message.INFO.getValue(), item.getName(), String.format("€ %.2f", item.getPrice()));
+            String message = String.format(Message.INFO.getValue(), item.getName(), String.format(EURO_FORMAT, item.getPrice()));
             Alert alert = showAlert(Alert.AlertType.INFORMATION, title, message,
-                    true,  ButtonType.OK);
+                    true, Main.getPrimaryStage(), ButtonType.OK);
             alert.showAndWait();
         } else {
             String message = String.format(Message.NOT_FOUND.getValue(), barcode);
@@ -89,12 +86,12 @@ public class HomePageController implements Initializable {
             ButtonType backType = new ButtonType(Btn.BACK.getName());
 
             Alert alert = showAlert(Alert.AlertType.WARNING, Title.WARNING.getValue(), message,
-                    true,  addType, backType);
+                    true, Main.getPrimaryStage(),  addType, backType);
 
             Button addButton = (Button) alert.getDialogPane().lookupButton(addType);
             Button backButton = (Button) alert.getDialogPane().lookupButton(backType);
-            addButton.getStyleClass().addAll("base-button", "custom-add-button");
-            backButton.getStyleClass().addAll("base-button", "custom-back-button");
+            addButton.getStyleClass().addAll(StyleClass.BASE_BTN.getName(), StyleClass.ADD_BTN.getName(), StyleClass.FAST_ADD_BTN.getName());
+            backButton.getStyleClass().addAll(StyleClass.BASE_BTN.getName(), StyleClass.CANCEL_BTN.getName());
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get().getText().equals(Btn.ADD.getName())) {
@@ -138,15 +135,15 @@ public class HomePageController implements Initializable {
             controller.setBarcode(barcode);
             stage.setTitle(Title.ADD.getValue());
             stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.WINDOW_MODAL);
+            moveModal(root, stage, getPrimaryStage());
+            showModalCentered(stage, getPrimaryStage());
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
-            stage.setWidth(300);
-            stage.setHeight(300);
             Main.openSecondaryStage(stage);
             stage.showAndWait();
         } catch (IOException e) {
-            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(), Message.NOT_OPEN.getValue(), true);
+            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(), Message.NOT_OPEN.getValue(), true, Main.getPrimaryStage());
             alert.showAndWait();
         }
     }

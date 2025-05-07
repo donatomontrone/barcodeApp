@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.doazz.barcode.constant.Message;
 import org.doazz.barcode.constant.Title;
 import org.doazz.barcode.dao.ItemDAO;
@@ -49,16 +50,17 @@ public class AddFastItemController {
         tabCondition(priceField, saveButton, nameField);
         tabCondition(saveButton, cancelButton, priceField);
         cancelButton.setOnAction(e -> closeWindow(cancelButton));
+        saveButton.setOnAction(e -> handleSave());
     }
 
     @FXML
     private void handleSave() {
         String name = nameField.getText();
         String priceText = priceField.getText();
-
+        Window owner = saveButton.getScene().getWindow();
         if (name.isEmpty() || priceText.isEmpty() || barcode.isEmpty()) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    Message.REQUIRED.getValue(), true);
+                    Message.REQUIRED.getValue(), true, owner);
             alert.showAndWait();
             return;
         }
@@ -67,7 +69,7 @@ public class AddFastItemController {
         if (itemWithName != null) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
                     String.format(Message.ALREADY_NAME_REGISTERED.getValue(), itemWithName.getName()),
-                    true);
+                    true, owner);
             alert.showAndWait();
             return;
         }
@@ -77,7 +79,7 @@ public class AddFastItemController {
             price = Double.parseDouble(priceText);
         } catch (NumberFormatException e) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    Message.INVALID_PRICE.getValue(), true);
+                    Message.INVALID_PRICE.getValue(), true, owner);
             alert.showAndWait();
             return;
         }

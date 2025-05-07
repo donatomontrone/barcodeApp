@@ -27,6 +27,10 @@
     -fx-background-color: #18947E;
 }
 
+.custom-add-fast-button {
+    -fx-padding: 6px 7px;
+}
+
 .custom-add-button:hover,
 .custom-edit-button:hover,
 .custom-ok-button:hover {
@@ -40,7 +44,6 @@
 }
 
 .custom-add-button:focused,
-.custom-edit-button:focused,
 .custom-ok-button:focused {
     -fx-border-color: #1BB899;
     -fx-effect: dropshadow(three-pass-box, #1BB899, 6, 0.5, 0, 0);
@@ -56,11 +59,6 @@
 
 .custom-delete-button:pressed {
     -fx-background-color: #bd2130;
-}
-
-.custom-delete-button:focused {
-    -fx-border-color: #e95a67;
-    -fx-effect: dropshadow(three-pass-box, #e95a67, 6, 0.5, 0, 0);
 }
 
 .custom-back-button {
@@ -175,3 +173,10 @@
     -fx-caret-color: #18947E;
 }
 
+.tooltip {
+    -fx-font-size: 10px;
+}
+
+.tooltip .label {
+    -fx-font-size: 10px;
+}

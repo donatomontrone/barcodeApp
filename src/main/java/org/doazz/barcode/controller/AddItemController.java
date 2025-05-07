@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import org.doazz.barcode.constant.Message;
 import org.doazz.barcode.constant.Title;
 import org.doazz.barcode.dao.ItemDAO;
@@ -39,42 +40,44 @@ public class AddItemController {
 
     @FXML
     public void onSave() {
-            String barcode = barcodeField.getText().trim();
-            String name = nameField.getText().trim();
-            String price = priceField.getText().trim();
+        String barcode = barcodeField.getText().trim();
+        String name = nameField.getText().trim();
+        String price = priceField.getText().trim();
+        Window owner = saveButton.getScene().getWindow();
 
-            if (barcode.isEmpty() || name.isEmpty() || priceField.getText().isEmpty()) {
-                Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                        Message.REQUIRED.getValue(), true);
-                alert.showAndWait();
-                return;
-            }
+        if (barcode.isEmpty() || name.isEmpty() || priceField.getText().isEmpty()) {
+            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
+                    Message.REQUIRED.getValue(), true, owner);
+            alert.showAndWait();
+            return;
+        }
 
-            if (!isNumeric(barcode)) {
-                Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                        String.format(Message.BARCODE.getValue(), barcode),
-                        true);
-                alert.showAndWait();
-                return;
-            }
+        if (isNotNumeric(barcode)) {
+            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
+                    String.format(Message.BARCODE.getValue(), barcode),
+                    true, owner);
+            alert.showAndWait();
+            return;
+        }
 
-            Item itemWIthName = itemDAO.findByName(name);
-            if (itemWIthName != null) {
-                Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                        String.format(Message.ALREADY_NAME_REGISTERED.getValue(), itemWIthName.getName()),
-                        true);
-                alert.showAndWait();
-                return;
-            }
 
-            Item itemWithBarcode = itemDAO.findByBarcode(barcode);
-            if (itemWithBarcode != null) {
-                Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                        String.format(Message.ALREADY_EAN_REGISTERED.getValue(), itemWithBarcode.getEAN()),
-                        true);
-                alert.showAndWait();
-                return;
-            }
+        Item itemWithBarcode = itemDAO.findByBarcode(barcode);
+        if (itemWithBarcode != null) {
+            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
+                    String.format(Message.ALREADY_EAN_REGISTERED.getValue(), itemWithBarcode.getEAN()),
+                    true, owner);
+            alert.showAndWait();
+            return;
+        }
+
+        Item itemWIthName = itemDAO.findByName(name);
+        if (itemWIthName != null) {
+            Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
+                    String.format(Message.ALREADY_NAME_REGISTERED.getValue(), itemWIthName.getName()),
+                    true, owner);
+            alert.showAndWait();
+            return;
+        }
 
         try {
             double priceValue = Double.parseDouble(price);
@@ -82,7 +85,7 @@ public class AddItemController {
             closeWindow(barcodeField);
         } catch (NumberFormatException e) {
             Alert alert = showAlert(Alert.AlertType.ERROR, Title.ERROR.getValue(),
-                    Message.INVALID_PRICE.getValue(), true);
+                    Message.INVALID_PRICE.getValue(), true, owner);
             alert.showAndWait();
         }
     }

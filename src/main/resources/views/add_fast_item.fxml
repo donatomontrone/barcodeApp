@@ -22,9 +22,6 @@
         </VBox.margin>
     </Label>
     <TextField fx:id="barcodeField" editable="false" promptText="0987654321" disable="true" focusTraversable="false" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0">
-        <cursor>
-            <Cursor fx:constant="DEFAULT"/>
-        </cursor>
         <opaqueInsets>
             <Insets/>
         </opaqueInsets>
@@ -39,7 +36,7 @@
     </Label>
     <TextField fx:id="nameField" promptText="Prodotto X" layoutX="23.0" layoutY="128.0" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="TEXT"/>
         </cursor>
         <opaqueInsets>
             <Insets/>
@@ -55,7 +52,7 @@
     </Label>
     <TextField fx:id="priceField" promptText="102.10" focusTraversable="false" layoutX="23.0" layoutY="160.0" maxWidth="461.0" prefHeight="30.0" prefWidth="461.0">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="TEXT"/>
         </cursor>
         <opaqueInsets>
             <Insets/>
@@ -71,12 +68,18 @@
                 <String fx:value="base-button"/>
                 <String fx:value="custom-add-button"/>
             </styleClass>
+            <tooltip>
+                <Tooltip text="Aggiungi un nuovo articolo" />
+            </tooltip>
         </Button>
         <Button fx:id="cancelButton" onAction="#handleCancel" text="Annulla">
             <styleClass>
                 <String fx:value="base-button"/>
                 <String fx:value="custom-back-button"/>
             </styleClass>
+            <tooltip>
+                <Tooltip text="Torna alla scansione" />
+            </tooltip>
         </Button>
         <VBox.margin>
             <Insets left="10.0" right="10.0"/>
