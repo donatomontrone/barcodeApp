@@ -3,11 +3,11 @@ jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar
 --java-options "-Xmx512m" --module-path C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib
 --add-modules javafx.controls,javafx.fxml
 
-jlink --module-path "C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib" --add-modules javafx.controls,javafx.fxml --output custom-runtime --compress=2 --no-header-files --no-man-pages
+set PATH_TO_FX=C:\Users\DonatoMontrone\Downloads\javafx-sdk-17.0.15\lib
 
+jdeps --multi-release 17 --module-path "%JAVA_HOME%\jmods" --class-path "target\BarcodeApp.jar;C:\Users\DonatoMontrone\Downloads\javafx-sdk-17.0.15\lib\javafx‑controls.jar;C:\Users\DonatoMontrone\Downloads\javafx-sdk-17.0.15\lib\javafx‑fxml.jar;C:\Users\DonatoMontrone\Downloads\javafx-sdk-17.0.15\lib\javafx‑graphics.jar" --print-module-deps target\BarcodeApp.jar
 
 jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar --main-class org.doazz.barcode.Main --type exe --icon src/main/resources/images/icon.ico --java-options "-Xmx512m" --runtime-image "C:/Users/DonatoMontrone/Downloads/barcodeApp/custom-runtime" --win-menu --win-dir-chooser --win-menu-group "BarcodeApp" --win-shortcut --win-upgrade-uuid "12345678-1234-5678-1234-567812345678" --description "BarcodeApp - Gestione rapida dei tuoi articoli" --install-dir "C:/Program Files/BarcodeApp" --resource-dir src/main/resources/ --vendor "Donato Montrone" --copyright "© 2025 - Donato Montrone"
 
 
-jlink ^
-  --module-path "%JAVA_HOME%/jmods;C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib" --add-modules java.base,java.logging,java.desktop,javafx.controls,javafx.fxml --output custom-runtime --compress=2 --no-header-files --no-man-pages
+jlink --module-path "%JAVA_HOME%/jmods;C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib" --add-modules java.base,java.logging,java.desktop,javafx.controls,javafx.fxml --output custom-runtime --compress=2 --no-header-files --no-man-pages
