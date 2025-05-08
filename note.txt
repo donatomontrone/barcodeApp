@@ -11,3 +11,36 @@ jpackage --name BarcodeApp --input target --main-jar BarcodeApp.jar --main-class
 
 
 jlink --module-path "%JAVA_HOME%/jmods;C:/Users/DonatoMontrone/Downloads/javafx-sdk-17.0.15/lib" --add-modules java.base,java.logging,java.desktop,javafx.controls,javafx.fxml --output custom-runtime --compress=2 --no-header-files --no-man-pages
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <!-- Rimuove tutti i module-info.class -->
+                                        <exclude>module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>

@@ -19,7 +19,7 @@ if exist %OUTPUT_RUNTIME% rd /s /q %OUTPUT_RUNTIME%
 REM === STEP 2: CREAZIONE RUNTIME CON JLINK ===
 echo Creazione della runtime personalizzata con jlink...
 jlink ^
-  --module-path "%JAVA_HOME%\jmods;%JFX_LIB%\javafx-controls.jar;%JFX_LIB%\javafx-fxml.jar;%JFX_LIB%\javafx-graphics.jar" ^
+  --module-path "%JAVA_HOME%\jmods;%JFX_LIB%" ^
   --add-modules %MODULES% ^
   --output %OUTPUT_RUNTIME% ^
   --compress=2 ^
